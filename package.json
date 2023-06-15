@@ -45,5 +45,15 @@
   },
   "lint-staged": {
     "*": "eslint --fix"
+  },
+  "dependencies": {
+    "@trpc/client": "^10.30.0",
+    "@trpc/react-query": "^10.30.0",
+    "@trpc/server": "^10.30.0",
+    "cypress": "^10.6.0"
+  },
+  "peerDependencies": {
+    "@trpc/server": "^10.30.0",
+    "cypress": "^10.6.0"
   }
 }
