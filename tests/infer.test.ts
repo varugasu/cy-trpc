@@ -1,5 +1,4 @@
 import { assertType, beforeEach, test, vi } from 'vitest'
-import type { inferRouterOutputs } from '@trpc/server'
 import { initTRPC } from '@trpc/server'
 
 import { stubTRPC } from '../src/index'
@@ -22,5 +21,11 @@ test('stubTRPC', () => {
 
   const trpcStub = stubTRPC<Router>()
 
-  assertType<inferRouterOutputs<Router>>(trpcStub)
+  interface expected {
+    hello: {
+      returns: (string) => void
+    }
+  }
+
+  assertType<expected>(trpcStub)
 })
