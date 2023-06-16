@@ -15,6 +15,9 @@ test('stubTRPC', () => {
   const t = initTRPC.create()
   const router = t.router({
     hello: t.procedure.query(() => 'word'),
+    nested: t.router({
+      hello: t.procedure.query(() => 'word'),
+    }),
   })
 
   type Router = typeof router
@@ -24,6 +27,11 @@ test('stubTRPC', () => {
   interface expected {
     hello: {
       returns: (string) => void
+    }
+    nested: {
+      hello: {
+        returns: (string) => void
+      }
     }
   }
 
