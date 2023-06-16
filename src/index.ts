@@ -1,7 +1,7 @@
 import type { AnyRouter, inferRouterOutputs } from '@trpc/server'
 
-export type cyTRPCInterceptor<T extends AnyRouter> = inferRouterOutputs<T>
+export type trpcStub<T extends AnyRouter> = inferRouterOutputs<T>
 
-export function stubTRPC() {
-  return {}
+export function stubTRPC<T extends AnyRouter, Stub = trpcStub<T>>() {
+  return {} as Stub
 }
