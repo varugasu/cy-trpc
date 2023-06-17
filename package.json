@@ -1,9 +1,15 @@
 {
   "name": "cy-trpc",
-  "version": "1.0.0",
+  "version": "0.0.1",
+  "description": "A dynamic Cypress Interceptor for tRPC routers.",
   "author": "Lucas Vargas Noronha <lvargasnoronha@gmail.com>",
   "license": "MIT",
-  "description": "",
+  "keywords": [
+    "cypress",
+    "trpc",
+    "testing",
+    "stub"
+  ],
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
@@ -30,7 +36,16 @@
     "test": "vitest",
     "typecheck": "tsc --noEmit"
   },
-  "keywords": [],
+  "peerDependencies": {
+    "@trpc/server": "^10.30.0",
+    "cypress": "^10.6.0"
+  },
+  "dependencies": {
+    "@trpc/client": "^10.30.0",
+    "@trpc/react-query": "^10.30.0",
+    "@trpc/server": "^10.30.0",
+    "cypress": "^10.6.0"
+  },
   "devDependencies": {
     "@antfu/eslint-config": "^0.39.5",
     "@babel/core": "^7.22.5",
@@ -52,15 +67,5 @@
   },
   "lint-staged": {
     "*": "eslint --fix"
-  },
-  "dependencies": {
-    "@trpc/client": "^10.30.0",
-    "@trpc/react-query": "^10.30.0",
-    "@trpc/server": "^10.30.0",
-    "cypress": "^10.6.0"
-  },
-  "peerDependencies": {
-    "@trpc/server": "^10.30.0",
-    "cypress": "^10.6.0"
   }
 }
