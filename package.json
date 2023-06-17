@@ -34,7 +34,8 @@
     "lint": "eslint .",
     "start": "esno src/index.ts",
     "test": "vitest",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "release": "bumpp && npm publish"
   },
   "peerDependencies": {
     "@trpc/server": "^10.30.0",
@@ -53,6 +54,7 @@
     "@cypress/webpack-preprocessor": "^5.17.1",
     "@types/node": "^20.3.1",
     "babel-loader": "^9.1.2",
+    "bumpp": "^9.1.1",
     "eslint": "^8.42.0",
     "esno": "^0.16.3",
     "lint-staged": "^13.2.2",
