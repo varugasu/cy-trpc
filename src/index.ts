@@ -1,4 +1,5 @@
 import type { AnyProcedure, AnyRouter, inferProcedureOutput } from '@trpc/server'
+import { createFlatProxy, createRecursiveProxy } from '@trpc/server/shared'
 
 export type TRPCStub<TRouter extends AnyRouter> = {
   [TKey in keyof TRouter['_def']['record']]: TRouter['_def']['record'][TKey] extends infer TRouterOrProcedure
@@ -12,5 +13,21 @@ export type TRPCStub<TRouter extends AnyRouter> = {
 }
 
 export function stubTRPC<T extends AnyRouter, Stub = TRPCStub<T>>() {
-  return {} as Stub
+  return createFlatProxy<Stub>((key) => {
+    return createRecursiveProxy((opts) => {
+      const pathCopy = [key, ...opts.path]
+      const lastArg = pathCopy.pop()
+      const path = pathCopy.join('.')
+      if (lastArg === 'returns') {
+        return cy.intercept(`/api/trpc/${path}`, {
+          statusCode: 200,
+          body: {
+            result: {
+              data: opts.args[0],
+            },
+          },
+        })
+      }
+    })
+  })
 }
