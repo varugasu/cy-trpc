@@ -18,9 +18,9 @@ describe('stubTRPC', () => {
       links: [httpLink({ url: '/api/trpc' })],
     })
 
-    trpcStub.hello.returns('world')
+    trpcStub.hello.returns('interceptor')
 
     const result = await client.hello.query()
-    expect(result).equal('world')
+    expect(result).equal('interceptor')
   })
 })
