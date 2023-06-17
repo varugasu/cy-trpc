@@ -10,6 +10,10 @@
     "testing",
     "stub"
   ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vargasmesh/cy-trpc.git"
+  },
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
@@ -28,6 +32,9 @@
       ]
     }
   },
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "unbuild",
     "dev": "unbuild --stub",
