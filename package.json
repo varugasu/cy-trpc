@@ -35,6 +35,7 @@
     "start": "esno src/index.ts",
     "test": "vitest",
     "typecheck": "tsc --noEmit",
+    "prepublishOnly": "nr build",
     "release": "bumpp && npm publish"
   },
   "peerDependencies": {
