@@ -65,6 +65,9 @@ For now, having a intercept is enough for my use case. But I am still figuring o
 
 Things on the roadmap:
 
-- Support tRPC config (transformer, base url, links)
+- Support tRPC config
+  - ~~transformer~~ solved in 0.0.4
+  - base url
+  - links
 - Pass options to `cy.intercept`
 - Mock tRPC client
