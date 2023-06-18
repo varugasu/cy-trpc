@@ -1,4 +1,4 @@
-import type { AnyProcedure, AnyRouter, inferProcedureOutput } from '@trpc/server'
+import { type AnyProcedure, type AnyRouter, type CombinedDataTransformer, defaultTransformer, type inferProcedureOutput } from '@trpc/server'
 import { createFlatProxy, createRecursiveProxy } from '@trpc/server/shared'
 
 export type TRPCStub<TRouter extends AnyRouter> = {
@@ -12,7 +12,13 @@ export type TRPCStub<TRouter extends AnyRouter> = {
     : never
 }
 
-export function stubTRPC<T extends AnyRouter, Stub = TRPCStub<T>>() {
+interface StubOptions {
+  transformer?: CombinedDataTransformer
+}
+
+export function stubTRPC<T extends AnyRouter, Stub = TRPCStub<T>>(options?: StubOptions) {
+  const transformer = options?.transformer ?? defaultTransformer
+
   return createFlatProxy<Stub>((key) => {
     return createRecursiveProxy((opts) => {
       const pathCopy = [key, ...opts.path]
@@ -23,7 +29,7 @@ export function stubTRPC<T extends AnyRouter, Stub = TRPCStub<T>>() {
           statusCode: 200,
           body: {
             result: {
-              data: opts.args[0],
+              data: transformer.output.serialize(opts.args[0]),
             },
           },
         })
