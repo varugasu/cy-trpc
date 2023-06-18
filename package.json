@@ -1,6 +1,6 @@
 {
   "name": "cy-trpc",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "A dynamic Cypress Interceptor for tRPC routers.",
   "author": "Lucas Vargas Noronha <lvargasnoronha@gmail.com>",
   "license": "MIT",
